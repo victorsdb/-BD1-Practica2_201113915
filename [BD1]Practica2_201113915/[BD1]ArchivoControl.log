@@ -1,0 +1,74 @@
+
+SQL*Loader: Release 18.0.0.0.0 - Production on Mon Mar 30 01:51:54 2020
+Version 18.4.0.0.0
+
+Copyright (c) 1982, 2018, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   /home/victorsdb/Documentos/GitHub/-BD1-Practica2_201113915/[BD1]Practica2_201113915/[BD1]ArchivoControl.ctl
+Character Set UTF8 specified for all input.
+
+Data File:      Entrada/entrada.csv
+  Bad File:     /home/victorsdb/Documentos/GitHub/-BD1-Practica2_201113915/[BD1]Practica2_201113915/entrada.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 1
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table C##PRACTICA2BD2.REGISTRO, loaded from every logical record.
+Insert option in effect for this table: TRUNCATE
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+NOMBRE_VICTIMA                      FIRST     *   ;       CHARACTER            
+APELLIDO_VICTIMA                     NEXT     *   ;       CHARACTER            
+DIRECCION_VICTIMA                    NEXT     *   ;       CHARACTER            
+FECHA_PRIMERA_SOSPECHA               NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+FECHA_CONFIRMACION                   NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+FECHA_MUERTE                         NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+ESTADO_VICTIMA                       NEXT     *   ;       CHARACTER            
+NOMBRE_ASOCIADO                      NEXT     *   ;       CHARACTER            
+APELLIDO_ASOCIADO                    NEXT     *   ;       CHARACTER            
+FECHA_CONOCIO                        NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+CONTACTO_FISICO                      NEXT     *   ;       CHARACTER            
+FECHA_INICIO_CONTACTO                NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+FECHA_FIN_CONTACTO                   NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+NOMBRE_HOSPITAL                      NEXT     *   ;       CHARACTER            
+DIRECCION_HOSPITAL                   NEXT     *   ;       CHARACTER            
+UBICACION_VICTIMA                    NEXT     *   ;       CHARACTER            
+FECHA_LLEGADA                        NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+FECHA_RETIRO                         NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+TRATAMIENTO                          NEXT     *   ;       CHARACTER            
+EFECTIVIDAD                          NEXT     4           INTEGER              
+FECHA_INICIO_TRATAMIENTO             NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+FECHA_FIN_TRATAMIENTO                NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
+EFECTIVIDAD_EN_VICTIMA               NEXT     4           INTEGER              
+
+value used for ROWS parameter changed from 250 to 193
+
+Table C##PRACTICA2BD2.REGISTRO:
+  14032 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                1047218 bytes(193 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          1
+Total logical records read:         14032
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Mon Mar 30 01:51:54 2020
+Run ended on Mon Mar 30 01:52:03 2020
+
+Elapsed time was:     00:00:08.77
+CPU time was:         00:00:00.13

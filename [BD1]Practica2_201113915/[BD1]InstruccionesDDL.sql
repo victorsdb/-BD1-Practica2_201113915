@@ -1,19 +1,32 @@
+-- ELIMINANDO TABLAS
+DROP TABLE Tratamiento CASCADE CONSTRAINTS;
+DROP TABLE Hospital CASCADE CONSTRAINTS;
+DROP TABLE Estado CASCADE CONSTRAINTS;
+DROP TABLE Contacto_Fisico CASCADE CONSTRAINTS;
+DROP TABLE Victima CASCADE CONSTRAINTS;
+DROP TABLE Asociado CASCADE CONSTRAINTS;
+DROP TABLE Conocimiento CASCADE CONSTRAINTS;
+DROP TABLE Contacto_Personas CASCADE CONSTRAINTS;
+DROP TABLE Ubicacion CASCADE CONSTRAINTS;
+DROP TABLE Tratamiento_Persona CASCADE CONSTRAINTS;
+DROP TABLE Registro CASCADE CONSTRAINTS;
+
 CREATE TABLE Tratamiento(
-Id_Tratamiento INTEGER NOT NULL,
-Tratamiento VARCHAR2(50) NOT NULL,
-Efectividad INTEGER NOT NULL,
- 
-CONSTRAINT PK_Tratamiento
-PRIMARY KEY(Id_Tratamiento)
+    Id_Tratamiento INTEGER NOT NULL,
+    Tratamiento VARCHAR2(50) NOT NULL,
+    Efectividad INTEGER NOT NULL,
+    
+    CONSTRAINT PK_Tratamiento
+    PRIMARY KEY(Id_Tratamiento)
 );
 
 CREATE TABLE Hospital(
-Id_Hospital INTEGER NOT NULL,
-Nombre VARCHAR2(50) NOT NULL,
-Direccion VARCHAR2(50) NOT NULL,
- 
-CONSTRAINT PK_Hospital
-PRIMARY KEY(Id_Hospital)
+    Id_Hospital INTEGER NOT NULL,
+    Nombre VARCHAR2(50) NOT NULL,
+    Direccion VARCHAR2(50) NOT NULL,
+    
+    CONSTRAINT PK_Hospital
+    PRIMARY KEY(Id_Hospital)
 );
 
 CREATE TABLE Estado(
@@ -137,32 +150,33 @@ CREATE TABLE Tratamiento_Persona(
     PRIMARY KEY(Victima, Tratamiento, Fecha_Inicio, Fecha_Fin, Efectividad_Victima)
 );
 
+
 CREATE TABLE Registro(
-    Id_Registro INTEGER GENERATED ALWAYS AS IDENTITY,
-    Nombre_Victima VARCHAR2(50) NULL,
-    Apellido_Victima VARCHAR2(50) NULL,
-    Direccion_Victima VARCHAR2(50) NULL,
-    Fecha_Primera_Sospecha DATE NULL,
-    Fecha_Confirmacion DATE NULL,
-    Fecha_Muerte DATE NULL,
-    Estado_Victima VARCHAR2(50) NULL,
-    Nombre_Asociado VARCHAR2(50) NULL,
-    Apellido_Asociado VARCHAR2(50) NULL,
-    Fecha_Conocio DATE NULL,
-    Contacto_Fisico VARCHAR2(50) NULL,
-    Fecha_Inicio_Contacto DATE NULL,
-    Fecha_Fin_Contacto DATE NULL,
-    Nombre_Hospital VARCHAR2(50) NULL,
-    Direccion_Hospital VARCHAR2(50) NULL,
-    Ubicacion_Victima VARCHAR2(50) NULL,
-    Fecha_Llegada DATE NULL,
-    Fecha_Retiro DATE NULL,
-    Tratamiento VARCHAR2(50) NULL,
-    Efectividad INTEGER NULL,
-    Fecha_Inicio_Tratamiento DATE NULL,
-    Fecha_Fin_Tratamiento DATE NULL,
-    Efectividad_En_Victima INTEGER NULL,
-    
-    CONSTRAINT PK_Registro
-    PRIMARY KEY(Id_Registro)
+    Nombre_Victima VARCHAR2(150),
+    Apellido_Victima VARCHAR2(150),
+    Direccion_Victima VARCHAR2(150),
+    Fecha_Primera_Sospecha TIMESTAMP,
+    Fecha_Confirmacion TIMESTAMP,
+    Fecha_Muerte TIMESTAMP,
+    Estado_Victima VARCHAR2(150) NULL,
+    Nombre_Asociado VARCHAR2(150) NULL,
+    Apellido_Asociado VARCHAR2(150) NULL,
+    Fecha_Conocio TIMESTAMP ,
+    Contacto_Fisico VARCHAR2(150) NULL,
+    Fecha_Inicio_Contacto TIMESTAMP,
+    Fecha_Fin_Contacto TIMESTAMP,
+    Nombre_Hospital VARCHAR2(150) NULL,
+    Direccion_Hospital VARCHAR2(150) NULL,
+    Ubicacion_Victima VARCHAR2(150) NULL,
+    Fecha_Llegada TIMESTAMP,
+    Fecha_Retiro TIMESTAMP,
+    Tratamiento VARCHAR2(150) NULL,
+    Efectividad INTEGER,
+    Fecha_Inicio_Tratamiento TIMESTAMP,
+    Fecha_Fin_Tratamiento TIMESTAMP,
+    Efectividad_En_Victima INTEGER
 );
+
+SELECT * FROM REGISTRO; 
+
+alter session set "_ORACLE_SCRIPT"=true;
