@@ -59,6 +59,7 @@ SELECT Victima.Nombre, Victima.Apellido--, Estado.Estado, Contacto_Fisico.Contac
 -- Consulta 5
 -- Top 5 de víctimas que más tratamientos se han aplicado del tratamiento “Oxígeno”.
 -- ====================================================================================== 
+
 SELECT * FROM
 (
     SELECT Victima.Id_Victima, Victima.Nombre, Victima.Apellido, Tratamiento.Tratamiento, count(tratamiento_persona.tratamiento)
@@ -76,28 +77,39 @@ SELECT * FROM
 -- se movieron por la dirección “1987 Delphine Well” a los cuales se les aplicó "Manejo 
 -- de la presión arterial" como tratamiento.
 -- ====================================================================================== 
-    SELECT Victima.Nombre, Victima.Apellido, Victima.Fecha_Muerte--, Ubicacion.Direccion, Tratamiento.*
-        FROM Victima
-            INNER JOIN Ubicacion ON Ubicacion.Victima = Victima.Id_Victima
-            INNER JOIN Tratamiento_Persona ON Tratamiento_Persona.Victima = Victima.Id_Victima
-            INNER JOIN Tratamiento ON Tratamiento.Id_Tratamiento = Tratamiento_Persona.Tratamiento
-                WHERE Victima.Fecha_Muerte IS NOT NULL 
-                AND UPPER(Ubicacion.Direccion) = '1987 DELPHINE WELL' 
-                AND UPPER(Tratamiento.Tratamiento) = 'MANEJO DE LA PRESION ARTERIAL';
+
+SELECT Victima.Nombre, Victima.Apellido, Victima.Fecha_Muerte--, Ubicacion.Direccion, Tratamiento.*
+    FROM Victima
+        INNER JOIN Ubicacion ON Ubicacion.Victima = Victima.Id_Victima
+        INNER JOIN Tratamiento_Persona ON Tratamiento_Persona.Victima = Victima.Id_Victima
+        INNER JOIN Tratamiento ON Tratamiento.Id_Tratamiento = Tratamiento_Persona.Tratamiento
+            WHERE Victima.Fecha_Muerte IS NOT NULL 
+            AND UPPER(Ubicacion.Direccion) = '1987 DELPHINE WELL' 
+            AND UPPER(Tratamiento.Tratamiento) = 'MANEJO DE LA PRESION ARTERIAL';
+
 -- ======================================================================================
 -- Consulta 7
 -- Mostrar nombre, apellido y dirección de las víctimas que tienen menos de 2 allegados 
 -- los cuales hayan estado en un hospital y que se le hayan aplicado únicamente dos tra-
 -- tamientos.
 -- ====================================================================================== 
-SELECT Victima.Nombre, Victima.Apellido, Victima.Direccion, COUNT(Conocimiento.Asociado), COUNT(Tratamiento_Persona.Tratamiento)
-    FROM Victima
-        INNER JOIN Hospital_Persona ON Hospital_Persona.Victima = Victima.Id_Victima
-        INNER JOIN Conocimiento ON Victima.Id_Victima = Conocimiento.Victima
+
+SELECT Allegados.Nombre, Allegados.Apellido, Allegados.Direccion/*, Allegado,*/ Trat FROM
+(
+SELECT Victima.Id_Victima, Victima.Nombre, Victima.Apellido, Victima.Direccion, Contacto_Personas.Asociado, COUNT(Contacto_Personas.Victima) AS Allegado
+    FROM Victima INNER JOIN Contacto_Personas ON Victima.Id_Victima = Contacto_Personas.Victima
+        GROUP BY Victima.Id_Victima, Victima.Nombre, Victima.Apellido, Victima.Direccion, Contacto_Personas.Asociado
+            HAVING COUNT(Contacto_Personas.Asociado) < 2
+)Allegados INNER JOIN
+(
+SELECT Victima.Id_Victima, Victima.Nombre, Victima.Apellido, Victima.Direccion, COUNT(Tratamiento_Persona.Victima) AS Trat
+    FROM Victima 
+        INNER JOIN Hospital_Persona ON  Hospital_Persona.Victima = Victima.Id_Victima
         INNER JOIN Tratamiento_Persona ON Tratamiento_Persona.Victima = Victima.Id_Victima
-        GROUP BY Victima.Nombre, Victima.Apellido, Victima.Direccion
-        ORDER BY Count(Conocimiento.Asociado)
-        HAVING Count(Conocimiento.Asociado);
+            GROUP BY Victima.Id_Victima, Victima.Nombre, Victima.Apellido, Victima.Direccion
+            HAVING COUNT(Tratamiento_Persona.Victima) = 2
+)Tratamientos ON Tratamientos.Id_Victima =  Allegados.Id_Victima;
+
 -- ======================================================================================
 -- Consulta 8
 -- Mostrar el número de mes ,de la fecha de la primera sospecha, nombre y apellido de las
@@ -105,7 +117,7 @@ SELECT Victima.Nombre, Victima.Apellido, Victima.Direccion, COUNT(Conocimiento.A
 -- (Todo en una sola consulta).
 -- ====================================================================================== 
 
-SELECT Nombre, Apellido, to_char(Fecha_Primera_Sospecha, 'MM') as Mes, Trat as Tratamiento FROM
+SELECT to_char(Fecha_Primera_Sospecha, 'MM') as Mes, Nombre, Apellido, Trat as Tratamiento FROM
 (
     SELECT Victima.Nombre, Victima.Apellido, Victima.Fecha_Primera_Sospecha, COUNT(Tratamiento_Persona.Victima) AS Trat
         FROM Tratamiento_Persona

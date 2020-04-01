@@ -1,6 +1,7 @@
 -- ======================================================================================
 -- Eliminando Tablas
 -- ======================================================================================
+
 DROP TABLE Tratamiento CASCADE CONSTRAINTS;
 DROP TABLE Hospital CASCADE CONSTRAINTS;
 DROP TABLE Estado CASCADE CONSTRAINTS;
@@ -13,9 +14,11 @@ DROP TABLE Contacto_Personas CASCADE CONSTRAINTS;
 DROP TABLE Ubicacion CASCADE CONSTRAINTS;
 DROP TABLE Tratamiento_Persona CASCADE CONSTRAINTS;
 DROP TABLE Registro CASCADE CONSTRAINTS;
+
 -- ======================================================================================
 -- Creando Tabla Tratamiento
 -- ======================================================================================
+
 CREATE TABLE Tratamiento(
     Id_Tratamiento  INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
     Tratamiento     VARCHAR2(50)    NOT NULL,
@@ -28,9 +31,11 @@ ALTER TABLE Tratamiento
 
 ALTER TABLE Tratamiento
     ADD CHECK (Efectividad BETWEEN 0 AND 10);
+
 -- ======================================================================================
 -- Creando Tabla Hospital
 -- ======================================================================================
+
 CREATE TABLE Hospital(
     Id_Hospital INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
     Nombre      VARCHAR2(50) NOT NULL,
@@ -40,9 +45,11 @@ CREATE TABLE Hospital(
 ALTER TABLE Hospital
     ADD CONSTRAINT PK_Hospital
         PRIMARY KEY(Id_Hospital);
+
 -- ======================================================================================
 -- Creando Tabla Estado
 -- ======================================================================================
+
 CREATE TABLE Estado(
     Id_Estado INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
     Estado VARCHAR2(50) NOT NULL
@@ -51,9 +58,11 @@ CREATE TABLE Estado(
 ALTER TABLE Estado
     ADD CONSTRAINT PK_Estado
         PRIMARY KEY(Id_Estado);
+
 -- ======================================================================================
 -- Creando Tabla Contacto_Fisico
 -- ======================================================================================
+
 CREATE TABLE Contacto_Fisico(
     Id_Contacto     INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
     Contacto_Fisico VARCHAR2(50) NOT NULL
@@ -62,9 +71,11 @@ CREATE TABLE Contacto_Fisico(
 ALTER TABLE Contacto_Fisico
     ADD CONSTRAINT PK_Contacto_Fisico
         PRIMARY KEY(Id_Contacto);
+
 -- ======================================================================================
 -- Creando Tabla Victima
 -- ======================================================================================
+
 CREATE TABLE Victima(
     Id_Victima              INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
     Nombre                  VARCHAR2(50)    NOT NULL,
@@ -84,9 +95,11 @@ ALTER TABLE Victima
     ADD CONSTRAINT FK1_Victima
         FOREIGN KEY (Estado)
             REFERENCES Estado(Id_Estado) ON DELETE CASCADE;
+
 -- ======================================================================================
 -- Creando Tabla HOSPITAL_PERSONA
 -- ======================================================================================
+
 CREATE TABLE Hospital_Persona(
     Victima     INTEGER NOT NULL,
     Hospital    INTEGER NOT NULL
@@ -105,9 +118,11 @@ ALTER TABLE Hospital_Persona
     ADD CONSTRAINT FK2_Hospital_Persona
         FOREIGN KEY (Hospital)
             REFERENCES Hospital(Id_Hospital) ON DELETE CASCADE;
+
 -- ======================================================================================
 -- Creando Tabla Asociado
 -- ======================================================================================
+
 CREATE TABLE Asociado(
     Id_Asociado INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
     Nombre      VARCHAR2(50) NOT NULL,
@@ -117,9 +132,11 @@ CREATE TABLE Asociado(
 ALTER TABLE Asociado
     ADD CONSTRAINT PK_Asociado
         PRIMARY KEY(Id_Asociado);
+
 -- ======================================================================================
 -- Creando Tabla Conocimiento
 -- ======================================================================================
+
 CREATE TABLE Conocimiento(
     Victima         INTEGER     NOT NULL,
     Asociado        INTEGER     NOT NULL,
@@ -139,9 +156,11 @@ ALTER TABLE Conocimiento
     ADD CONSTRAINT FK2_Conocimiento
         FOREIGN KEY (Asociado)
             REFERENCES Asociado(Id_Asociado) ON DELETE CASCADE;
+
 -- ======================================================================================
 -- Creando Tabla Contacto_Personas
 -- ======================================================================================
+
 CREATE TABLE Contacto_Personas(
     Victima         INTEGER     NOT NULL,
     Asociado        INTEGER     NOT NULL,
@@ -168,9 +187,11 @@ ALTER TABLE Contacto_Personas
     ADD CONSTRAINT FK3_Contacto_Personas
         FOREIGN KEY (Contacto_Fisico)
             REFERENCES Contacto_Fisico(Id_Contacto) ON DELETE CASCADE;
+
 -- ======================================================================================
 -- Creando Tabla Ubicacion
 -- ======================================================================================
+
 CREATE TABLE Ubicacion(
     Victima         INTEGER         NOT NULL,
     Direccion       VARCHAR2(50)    NOT NULL,
@@ -186,9 +207,11 @@ ALTER TABLE Ubicacion
     ADD CONSTRAINT FK1_Ubicacion
         FOREIGN KEY (Victima)
             REFERENCES Victima(Id_Victima) ON DELETE CASCADE;
+
 -- ======================================================================================
 -- Creando Tabla Tratamiento_Persona
 -- ======================================================================================
+
 CREATE TABLE Tratamiento_Persona(
     Victima             INTEGER     NOT NULL,
     Tratamiento         INTEGER     NOT NULL,
@@ -213,9 +236,11 @@ ALTER TABLE Tratamiento_Persona
 
 ALTER TABLE Tratamiento_Persona
     ADD CHECK (Efectividad_Victima BETWEEN 0 AND 10);
+
 -- ======================================================================================
 -- Creando Tabla Registro
 -- ======================================================================================
+
 CREATE TABLE Registro(
     Nombre_Victima              VARCHAR2(150),
     Apellido_Victima            VARCHAR2(150),
@@ -241,4 +266,5 @@ CREATE TABLE Registro(
     Fecha_Fin_Tratamiento       TIMESTAMP,
     Efectividad_En_Victima      INTEGER
 );
+
 -- ======================================================================================

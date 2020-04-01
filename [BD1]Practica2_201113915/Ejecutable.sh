@@ -27,7 +27,7 @@ echo -e "\e[96m SE HA LLENADO LA BASE DE DATOS CORRECTAMENTE!. ENTER PARA CONTIN
 read
 
 # REALIZANDO LAS CONSULTAS
-echo exit | sqlplus -S C##PRACTICA2BD2/107990@//localhost:1521/XEPDB1 @[BD1]Consultas.sql
-echo " "
-echo -e "\e[92m YA SE HAN REALIZADO TODAS LAS CONSULTAS. ENTER PARA CONTINUAR ... \e[0m"
+# echo exit | sqlplus -S C##PRACTICA2BD2/107990@//localhost:1521/XEPDB1 @[BD1]Consultas.sql
+# echo " "
+# echo -e "\e[92m YA SE HAN REALIZADO TODAS LAS CONSULTAS. ENTER PARA CONTINUAR ... \e[0m"
 #read

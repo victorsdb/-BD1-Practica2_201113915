@@ -1,5 +1,5 @@
 
-SQL*Loader: Release 18.0.0.0.0 - Production on Tue Mar 31 15:16:09 2020
+SQL*Loader: Release 18.0.0.0.0 - Production on Tue Mar 31 21:06:48 2020
 Version 18.4.0.0.0
 
 Copyright (c) 1982, 2018, Oracle and/or its affiliates.  All rights reserved.
@@ -7,7 +7,7 @@ Copyright (c) 1982, 2018, Oracle and/or its affiliates.  All rights reserved.
 Control File:   [BD1]ArchivoControl.ctl
 Character Set UTF8 specified for all input.
 
-Data File:      Entrada/entrada.csv
+Data File:      Entrada/GRAND_VIRUS_EPICENTER.csv
   Bad File:     bad/[BD1]ArchivoControl.bad
   Discard File:  none specified
  
@@ -67,8 +67,8 @@ Total logical records read:         14032
 Total logical records rejected:         0
 Total logical records discarded:        0
 
-Run began on Tue Mar 31 15:16:09 2020
-Run ended on Tue Mar 31 15:16:12 2020
+Run began on Tue Mar 31 21:06:48 2020
+Run ended on Tue Mar 31 21:06:51 2020
 
-Elapsed time was:     00:00:02.80
-CPU time was:         00:00:00.15
+Elapsed time was:     00:00:02.74
+CPU time was:         00:00:00.16
