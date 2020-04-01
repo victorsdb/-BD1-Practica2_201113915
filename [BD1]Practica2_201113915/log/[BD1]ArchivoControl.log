@@ -1,5 +1,5 @@
 
-SQL*Loader: Release 18.0.0.0.0 - Production on Mon Mar 30 01:44:44 2020
+SQL*Loader: Release 18.0.0.0.0 - Production on Tue Mar 31 15:16:09 2020
 Version 18.4.0.0.0
 
 Copyright (c) 1982, 2018, Oracle and/or its affiliates.  All rights reserved.
@@ -20,7 +20,7 @@ Bind array:     250 rows, maximum of 1048576 bytes
 Continuation:    none specified
 Path used:      Conventional
 
-Table REGISTRO, loaded from every logical record.
+Table C##PRACTICA2BD2.REGISTRO, loaded from every logical record.
 Insert option in effect for this table: TRUNCATE
 TRAILING NULLCOLS option in effect
 
@@ -45,21 +45,21 @@ UBICACION_VICTIMA                    NEXT     *   ;       CHARACTER
 FECHA_LLEGADA                        NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
 FECHA_RETIRO                         NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
 TRATAMIENTO                          NEXT     *   ;       CHARACTER            
-EFECTIVIDAD                          NEXT     4           INTEGER              
+EFECTIVIDAD                          NEXT     *   ;       CHARACTER            
 FECHA_INICIO_TRATAMIENTO             NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
 FECHA_FIN_TRATAMIENTO                NEXT     *   ;       DATETIME YYYY-MM-DD HH24:MI:SS.FF
-EFECTIVIDAD_EN_VICTIMA               NEXT     4           INTEGER              
+EFECTIVIDAD_EN_VICTIMA               NEXT     *   ;       CHARACTER            
 
-value used for ROWS parameter changed from 250 to 193
+value used for ROWS parameter changed from 250 to 176
 
-Table REGISTRO:
+Table C##PRACTICA2BD2.REGISTRO:
   14032 Rows successfully loaded.
   0 Rows not loaded due to data errors.
   0 Rows not loaded because all WHEN clauses were failed.
   0 Rows not loaded because all fields were null.
 
 
-Space allocated for bind array:                1047218 bytes(193 rows)
+Space allocated for bind array:                1044384 bytes(176 rows)
 Read   buffer bytes: 1048576
 
 Total logical records skipped:          1
@@ -67,8 +67,8 @@ Total logical records read:         14032
 Total logical records rejected:         0
 Total logical records discarded:        0
 
-Run began on Mon Mar 30 01:44:44 2020
-Run ended on Mon Mar 30 01:44:47 2020
+Run began on Tue Mar 31 15:16:09 2020
+Run ended on Tue Mar 31 15:16:12 2020
 
-Elapsed time was:     00:00:03.16
-CPU time was:         00:00:00.12
+Elapsed time was:     00:00:02.80
+CPU time was:         00:00:00.15
